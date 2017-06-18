@@ -2,6 +2,11 @@
 
 1. Always scaled at pod level and not at container level. So, create multiple pods with containers based on how you want to define scaling
 
+## Deployment strategy
+
+* Canary
+* Blue - Green
+
 
 ### _Deployment_
 
@@ -152,5 +157,3 @@ kubectl top pods --all-namespaces
 
 watch command -> to continously watch
 
-       
-        
