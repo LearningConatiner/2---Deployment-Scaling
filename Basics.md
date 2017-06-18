@@ -1,14 +1,4 @@
-## Scaling
-
-1. Always scaled at pod level and not at container level. So, create multiple pods with containers based on how you want to define scaling
-
-## Deployment strategy
-
-* Canary
-* Blue - Green
-
-
-### _Deployment_
+## Deployment
 
 + Old method: pods/services/replication controllers separately.
 
@@ -26,6 +16,8 @@ No need of label
 	  replicas: <1 - n>
 	  template:
 	    <from metadata to spec of pod definition, labels are needed here to associate pods to service>
+
+## Scaling
 
 * Horizontal scaling -  manual
 
@@ -73,50 +65,8 @@ Let's experiment by increasing the minimum pods.
 
 		kubectl get hpa <deployment> --namespace <namespace number>
 		
-Now you can watch the deployment. 
+Now you can use __watch__ command to watch the deployment auto-scale. 
 
-**********************
-
-* Rollouts 
-	* default: rolling update
-	* Start	
-	* Stop
-	* Resume
-
-	A Kubernetes rollout is the process of updating or replacing replicas with replicas matching the new deployment template. 
-	
-	Changes may be configuration, such as environment variables or labels, or also code changes by updating the image key. 
-	
-	In a nutshell, any change to the deployment's template will trigger a rollout. 
-	
-	Deployments have different rollout strategies. 
-
-Kubernetes uses rolling updates by default. 
-	
-	Replicas are updated in groups instead of all at once until the rollout completes. Kubectl includes commands similar to rollout status, you can pause, resume, and rollback them. 
-	
-		kubectl rollout status deployment <yaml> --namespace <namespace name>
-	
-	* Pause -> not immediate
-	
-			kubectl rollout pause deployment <yaml> --namespace <namespace name>
-			
-	* Resume -> picks from where paused
-
-			kubectl rollout resume deployment <yaml> --namespace <namespace name>
-			
-	* undo -> to previous verion
-	
-			kubectl rollout undo deployment <yaml> --namespace <namespace name>
-			
-	* history -> lists verion
-	
-			kubectl rollout history deployment <yaml> --namespace <namespace name>				
-	* To rollout to a specific version
-
-			kubectl rollout undo deployment <yaml> --to-version <version number> --namespace <namespace name>
-	
-	
 **Heapster**
 
 		kubectl get --all-namespaces services
