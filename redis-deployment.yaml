@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: example-data-tier
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: example-data-tier
+      labels:
+        app: ms-example
+        tier: data
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-data-tier
+spec:
+  selector:
+    app: ms-example
+    tier: data
+  ports:
+    - name: redis
+      port: 6379
+      protocol: TCP
