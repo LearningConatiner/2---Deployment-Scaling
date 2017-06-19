@@ -68,7 +68,11 @@ Kubectl edit opens up the specified resource in your editor, then applies the ch
 		$ watch -n 1 kubectl get deployments --namespace ns1
 		Let's experiment by increasing the minimum pods. 
 
-		kubectl get hpa <deployment> --namespace <namespace number>
+		kubectl get hpa <deployment> --namespace <namespace name>
+		
+		kubectl get hpa --namespace <namespace name>
+		NAME               REFERENCE                     TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+		example-app-tier   Deployment/example-app-tier   2% / 10%   5         5         5          8m
 		
 Now you can use __watch__ command to watch the deployment auto-scale. 
 
@@ -100,7 +104,8 @@ Now you can use __watch__ command to watch the deployment auto-scale.
 		kube-system   kubernetes-dashboard-2917854236-zxjv7          1/1       Running   0          1h
 		kube-system   l7-default-backend-1044750973-dk2l8            1/1       Running   0          1h
 		
-		
+
+
 ### Useful resource monitoring commands
 #### Top
 
