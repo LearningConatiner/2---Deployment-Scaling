@@ -59,9 +59,14 @@ Kubernetes will increase the number of replicas when the average CPU usage acros
 
 Kubectl edit opens up the specified resource in your editor, then applies the changes. It's the same as editing files yourself and calling kubectl apply.
 
-		kubectl edit hpa <deployment> --namespace <namespace number>
-
-Let's experiment by increasing the minimum pods. 
+	kubectl edit hpa <deployment> --namespace <namespace number>
+	# set min - 5, max - 5 and cpu percent 10
+		
+		kubectl edit hpa example-app-tier --namespace ns1
+		horizontalpodautoscaler "example-app-tier" edited
+		
+		$ watch -n 1 kubectl get deployments --namespace ns1
+		Let's experiment by increasing the minimum pods. 
 
 		kubectl get hpa <deployment> --namespace <namespace number>
 		
